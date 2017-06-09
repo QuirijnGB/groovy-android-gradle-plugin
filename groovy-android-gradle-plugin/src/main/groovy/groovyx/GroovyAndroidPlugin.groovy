@@ -177,18 +177,15 @@ class GroovyAndroidPlugin implements Plugin<Project> {
 
   @CompileStatic
   private static BasePlugin getAndroidBasePlugin(Project project) {
-    def plugin
     if(project.plugins.hasPlugin('android')){
-    	plugin = project.plugins.findPlugin('android')
+    	return project.plugins.findPlugin('android') as BasePlugin
     }
     if(project.plugins.hasPlugin('android-library')){
-    	plugin = project.plugins.findPlugin('android-library')
+    	return project.plugins.findPlugin('android-library') as BasePlugin
     }
-    if(project.plugins.hasPlugin('android-feature')){
-    	plugin = project.plugins.findPlugin('android-feature')
+    if(project.plugins.hasPlugin('com.android.feature')){
+    	return project.plugins.findPlugin('com.android.feature') as BasePlugin
     }
-
-    return plugin as BasePlugin
   }
 
   @CompileStatic
